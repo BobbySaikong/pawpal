@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:pawpal/models/user.dart';
+import 'package:pawpal/myconfig.dart';
 import 'package:pawpal/views/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'mainpage.dart';
@@ -26,6 +27,8 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  late double height, width;
+
   @override
   void initState() {
     super.initState();
@@ -34,6 +37,14 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    height = MediaQuery.of(context).size.height;
+    width = MediaQuery.of(context).size.width;
+    print(width);
+    if (width > 400) {
+      width = 400;
+    } else {
+      width = width;
+    }
     return Scaffold(
       appBar: AppBar(title: Text('Login')),
       body: Center(
@@ -71,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                     icon: Icon(Icons.key),
                     suffixIcon: IconButton(
                       onPressed: () {
-                        
+
 
                           if (isVisible) {
                           isVisible = false;
@@ -79,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                           isVisible = true;
                         }
                         setState(() {});
-                        
+
                       },
                       icon: Icon(Icons.visibility_outlined),
                     ),
@@ -97,22 +108,11 @@ class _LoginPageState extends State<LoginPage> {
                       onChanged: (newValue) {
 
                         preferencesUpdate(isChecked);
-                        
+
                         isChecked = newValue!;
                         setState(() {
                         });
-                        // if(newValue = true){
-                        //   if(isChecked = false){
-                        //     if(passwordController.text.isEmpty || emailController.text.isEmpty){
-                        //       printSnackBar('Please fill in details');
-                        //       return;
-                        //     }else{
-                        //       isChecked = newValue;
-                        //     }
-                          
-                        //   }
-                        // }
-                        
+
 
                       }
                     ),
@@ -123,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                 padding: EdgeInsets.all(8.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    
+
                       log('register button pressed.');
                       loginCheck();
                   },
@@ -153,7 +153,7 @@ class _LoginPageState extends State<LoginPage> {
     } else {
       log('loginCheck done.');
       loginUser(email, password);
-      
+
     }
   }
 
@@ -184,9 +184,9 @@ class _LoginPageState extends State<LoginPage> {
       printSnackBar('Logging in');
 
     await http.post(
-      Uri.parse('http://10.117.3.96/pawpal/api/login_user.php'),
+      Uri.parse('${MyConfig.baseUrl}/pawpal/api/login_user.php'),
       body: {
-        'email': email, 
+        'email': email,
         'password': password}
     ).then((httpResponse){
       if (httpResponse.statusCode == 200) {
@@ -200,7 +200,7 @@ class _LoginPageState extends State<LoginPage> {
         if(!mounted) return;
         printSnackBar('Login successful!');
 
-        
+
         Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
@@ -219,9 +219,9 @@ class _LoginPageState extends State<LoginPage> {
     }
     });
 
-    
+
     }
-  
+
 
   Future<void> preferencesUpdate(bool isChecked) async {
     String email = emailController.text.trim();
@@ -247,7 +247,7 @@ class _LoginPageState extends State<LoginPage> {
     log('preferences updated.');}
     isChecked = true;
     setState(() {
-      
+
     });
   }
 }

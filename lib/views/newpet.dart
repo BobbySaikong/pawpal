@@ -26,19 +26,13 @@ class _SubmitPetScreenState extends State<SubmitPetScreen> {
     "Dog",
     "Rabbit",
     "Other"
-    //todo: add
-    // Cat, Dog, Rabbit, Other
   ];
 
   List<String> petCategory = [
     "Adoption",
     "Donation Request",
     "Help/Rescue"
-    //todo, insert
-    // // •	Submission Category
-    // o	Adoption
-    // o	Donation Request
-    // o	Help/Rescue
+
   ];
   TextEditingController petNameController = TextEditingController();
   TextEditingController petDescriptionController = TextEditingController();
@@ -50,7 +44,6 @@ class _SubmitPetScreenState extends State<SubmitPetScreen> {
   late Position mypostion;
   String address = "";
   File? image;
-  //Uint8List? webImage; // for web
 
   @override
   Widget build(BuildContext context) {
@@ -98,16 +91,11 @@ class _SubmitPetScreenState extends State<SubmitPetScreen> {
                                 image: FileImage(image!),
                                 fit: BoxFit.cover,
                               )
-                            // : (webImage != null)
-                            // ? DecorationImage(
-                            //     image: MemoryImage(webImage!),
-                            //     fit: BoxFit.cover,
-                            //   )
+
                             : null, // no image → show icon instead
                       ),
 
-                      // If no image selected → show camera icon
-                      // && webImage == null
+
                       child: (image == null)
                           ? Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -181,15 +169,7 @@ class _SubmitPetScreenState extends State<SubmitPetScreen> {
                       });
                     },
                   ),
-                  // SizedBox(height: 10),
-                  // TextField(
-                  //   controller: hourlyrateController,
-                  //   keyboardType: TextInputType.number,
-                  //   decoration: InputDecoration(
-                  //     labelText: 'Hourly Rate',
-                  //     border: OutlineInputBorder(),
-                  //   ),
-                  // ),
+
                   SizedBox(height: 10),
                   TextField(
                     controller: petDescriptionController,
@@ -289,10 +269,7 @@ class _SubmitPetScreenState extends State<SubmitPetScreen> {
     final pickedFile = await picker.pickImage(source: ImageSource.camera);
 
     if (pickedFile != null) {
-      // if (kIsWeb) {
-      //   webImage = await pickedFile.readAsBytes();
-      //   setState(() {});
-      // } else
+
       {
         image = File(pickedFile.path);
         cropImage();
@@ -305,10 +282,7 @@ class _SubmitPetScreenState extends State<SubmitPetScreen> {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
     if (pickedFile != null) {
-      // if (kIsWeb) {
-      //   webImage = await pickedFile.readAsBytes();
-      //   setState(() {});
-      // } else
+
       {
         image = File(pickedFile.path);
         cropImage(); // only for mobile
@@ -317,7 +291,6 @@ class _SubmitPetScreenState extends State<SubmitPetScreen> {
   }
 
   Future<void> cropImage() async {
-    //if (kIsWeb) return; // skip cropping on web
     CroppedFile? croppedFile = await ImageCropper().cropImage(
       sourcePath: image!.path,
       aspectRatio: CropAspectRatio(ratioX: 5, ratioY: 3),
@@ -340,60 +313,28 @@ class _SubmitPetScreenState extends State<SubmitPetScreen> {
   void showSubmitDialog() {
     // Title validation
     if (petNameController.text.trim().isEmpty) {
-      // ScaffoldMessenger.of(context).showSnackBar(
-      //   const SnackBar(
-      //     content: Text("Please enter pet name."),
-      //     backgroundColor: Colors.deepOrange,
-      //   ),
-      // );
+
       printSnackBar("Please enter your pet name.");
       return;
     }
 
-    // Image validation: mobile uses image, web uses webImage
-    // !kIsWeb &&
+
     if (image == null) {
-      // ScaffoldMessenger.of(context).showSnackBar(
-      //   const SnackBar(
-      //     content: Text("Please select an image regarding your pet."),
-      //     backgroundColor: Colors.deepOrange,
-      //   ),
-      // );
+
       printSnackBar("Please select an image.");
       return;
     }
 
-    // if (kIsWeb && webImage == null) {
-    //   ScaffoldMessenger.of(context).showSnackBar(
-    //     const SnackBar(
-    //       content: Text("Please select an image"),
-    //       backgroundColor: Colors.red,
-    //     ),
-    //   );
-    //   return;
-    // }
 
-    // Hourly rate
-    // TODO: change to geocoding + geolocation (autofilled)
     if (addressController.text.trim().isEmpty) {
-      // ScaffoldMessenger.of(context).showSnackBar(
-      //   const SnackBar(
-      //     content: Text("Please enter hourly rate"),
-      //     backgroundColor: Colors.red,
-      //   ),
-      // );
+
       printSnackBar("please determine the location.");
       return;
     }
 
     // petDescription
     if (petDescriptionController.text.trim().isEmpty) {
-      // ScaffoldMessenger.of(context).showSnackBar(
-      //   const SnackBar(
-      //     content: Text("Please describe your pet"),
-      //     backgroundColor: Colors.deepOrange,
-      //   ),
-      // );
+
       printSnackBar("Please describe your pet");
       return;
     }
@@ -425,16 +366,12 @@ class _SubmitPetScreenState extends State<SubmitPetScreen> {
 
   void submitPet() {
     String base64image = "";
-    // if (kIsWeb) {
-    //   base64image = base64Encode(webImage!);
-    // } else
+
     {
       base64image = base64Encode(image!.readAsBytesSync());
     }
     String petName = petNameController.text.trim();
     String petDescription = petDescriptionController.text.trim();
-    //change with location of device (autofilled), geocoding, geolocation
-    String address = addressController.text.trim();
 
     http
         .post(
@@ -461,12 +398,7 @@ class _SubmitPetScreenState extends State<SubmitPetScreen> {
               Navigator.pop(context);
             } else {
               if (!mounted) return;
-              // ScaffoldMessenger.of(context).showSnackBar(
-              //   SnackBar(
-              //     content: Text(responseArray['message']),
-              //     backgroundColor: Colors.red,
-              //   ),
-              // );
+
               printSnackBar(responseArray['message']);
             }
           }

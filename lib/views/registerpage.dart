@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:pawpal/myconfig.dart';
 import 'package:pawpal/views/loginpage.dart';
 import 'package:http/http.dart' as http;
 import 'package:pawpal/views/main.dart';
@@ -25,9 +26,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
+  late double height, width;
 
   @override
   Widget build(BuildContext context) {
+    height = MediaQuery.of(context).size.height;
+    width = MediaQuery.of(context).size.width;
+    print(width);
+    if (width > 400) {
+      width = 400;
+    } else {
+      width = width;
+    }
     return Scaffold(
       appBar: AppBar(title: Text('Register')),
       body: Center(
@@ -98,7 +108,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     label: Text('Confirm Password'),
-                    
+
                   ),
                 ),
               ),
@@ -184,7 +194,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     await http
         .post(
-          Uri.parse('http://10.117.3.96/pawpal/api/register_user.php'),
+          Uri.parse('${MyConfig.baseUrl}/pawpal/api/register_user.php'),
           body: {
             'name': name,
             'email': email,
