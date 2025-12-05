@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+  import 'package:flutter/material.dart';
 import 'splashscreen.dart';
 
 void main() {
@@ -15,7 +15,7 @@ class MainApp extends StatelessWidget {
         appBarTheme:AppBarTheme(
           backgroundColor: const Color.fromARGB(255, 14, 77, 71),
           foregroundColor: Colors.white,
-          
+
         ),
       ),
       home: SplashScreen(),
