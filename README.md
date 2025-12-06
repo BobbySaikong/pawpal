@@ -2,7 +2,7 @@
 
 “PawPal” is a Pet adoption management app to help petkeepers community manage adoption process.
 
-[**Github**]<https://github.com/BobbySaikong/PawPal>)
+[**Github**](<https://github.com/BobbySaikong/PawPal>)
 
 [**Youtube:**](<https://youtu.be/-NYrvtdath8>)
 
