@@ -1,41 +1,39 @@
-# PawPal
+# PawPal 
 
-“PawPal” is a Pet adoption management app to help petkeepers 
+“PawPal” is a Pet adoption management app to help petkeepers community manage adoption process.
 
-**Github**:(<https://github.com/BobbySaikong/PawPal>)
+[**Github**]<https://github.com/BobbySaikong/PawPal>)
 
-**Youtube:** (<https://youtu.be/R76I-Y9XT1I>)
+[**Youtube:**](<https://youtu.be/-NYrvtdath8>)
 
-**Inputs**
+# Widgets/Packages
 
-•	Name,email,password,phone
+* From material.dart
+* http
+* geocoding & geolocator
+* sharedPreference
+* ImageCropper & ImagePicker
 
-**Process**
+# Validation Approach
 
-•	Register account, then log in.
+ * non-empty fields
+ * passwords of 6 or more characters
+ * RegExp validation
+ * confirm-password field
+ * Location generator
+ * Alert Dialog
 
-**Output**
-
-•	Display main page
-
-**Widgets**
-
-MaterialApp,Scaffold,Column,Padding,Center,Column,Row,SizedBox,TextFormField,ElevatedButton,Navigator,Text
-
-**Validation Approach**
-
- non-empty fields, 
-
-App Screenshots
-
-<img width="230" height="532" alt="image" src="https://github.com/user-attachments/assets/20a1bb91-656e-4afd-8d27-c213df6e9cdc" />
-<img width="264" height="615" alt="image" src="https://github.com/user-attachments/assets/9a9ab72c-945c-4d7c-97a3-af3eab274ddb" />
-<img width="209" height="489" alt="image" src="https://github.com/user-attachments/assets/1fe06f63-c175-4833-92b5-7b080a764410" />
-<img width="241" height="566" alt="image" src="https://github.com/user-attachments/assets/0afaac26-1bc2-4a64-83e2-61c197b46c9b" />
-
-
-
-
+# App Screenshots
+<img width="150" height="348" alt="image" src="https://github.com/user-attachments/assets/e363cfc8-2e09-432a-8cdc-75ff5fd21db7" />
+<img width="153" height="429" alt="image" src="https://github.com/user-attachments/assets/9f005673-75c5-4b10-970a-80afe9b29e0d" />
+<img width="192" height="439" alt="image" src="https://github.com/user-attachments/assets/9856c608-1050-42d9-b8d8-0c8ae54f8bd6" />
+<img width="191" height="440" alt="image" src="https://github.com/user-attachments/assets/a7bfa018-210b-417c-b2a7-7d1ddd956fc6" />
+<img width="169" height="395" alt="image" src="https://github.com/user-attachments/assets/db23acef-6a16-4fae-8592-bd9dcfb724dd" />
+<img width="169" height="394" alt="image" src="https://github.com/user-attachments/assets/548a38b0-9089-4a2b-9b98-c85796e482ea" />
+<img width="173" height="378" alt="image" src="https://github.com/user-attachments/assets/dad10ec5-a4c7-44ab-9936-865565208b7a" />
+<img width="166" height="376" alt="image" src="https://github.com/user-attachments/assets/5034a54f-39ee-4999-b0c6-72f969b5d2c9" />
+<img width="167" height="376" alt="image" src="https://github.com/user-attachments/assets/b789583d-26b2-4aeb-8888-ae9be26da1e9" />
+<img width="166" height="374" alt="image" src="https://github.com/user-attachments/assets/f362dc9f-7fff-4265-9120-59647a7ab0f3" />
 
 Authorship Note
 
