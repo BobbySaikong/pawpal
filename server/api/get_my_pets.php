@@ -1,4 +1,6 @@
 <?php
+//will load pet into mainpage.dart
+// TODO: rectify sql error
 header("Access-Control-Allow-Origin: *"); // running as crome app
 
 if ($_SERVER["REQUEST_METHOD"] == "GET") {

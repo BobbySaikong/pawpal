@@ -18,10 +18,11 @@ $longitude = $_POST["longitude"];
 $decodedimage = base64_decode($_POST["image"]);
 
 // Insert new pet into database
-
+//TODO! : rectify sql error
 $sqladdpet = "INSERT INTO tbl_pets (user_id, pet_name , pet_type , pet_category , description , image_paths , lat , lng)
 	VALUES ('$userid','$petname','$pettype', '$petcategory','$description', '$decodedimage','$latitude','$longitude');";
 try {
+    //to be checked
     if ($connect->query($sqladdpet) === TRUE) {
         $filename = "../assets/uploads/" . $petname . ".png";
         file_put_contents($filename, $decodedimage);
